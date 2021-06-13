@@ -8,7 +8,9 @@
   <tr>
     <td><%= task.title %></td>
     <td><%= task.content %></td>
+    <td><%= link_to '詳細', task_path(task.id) %></td>
   </tr>
 <% end %>
 </table>
 <%= link_to '一覧画面に戻る', tasks_path %>
+<%= link_to '新しくブログを投稿する', new_task_path %>
