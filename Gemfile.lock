@@ -261,7 +261,6 @@ DEPENDENCIES
   rexml
   rspec-rails
   sass-rails (>= 6)
-  selenium-webdriver
   spring
   spring-commands-rspec
   turbolinks (~> 5)

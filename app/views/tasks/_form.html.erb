@@ -10,13 +10,13 @@
     </div>
   <% end %>
   <div class="blog_title">
-    <%= form.label :title %>
+    <%= form.label :タスク名 %>
     <%= form.text_field :title %>
   </div>
   <div class="blog_content">
-    <%= form.label :content %>
+    <%= form.label :タスク詳細 %>
     <%= form.text_field :content %>
   </div>
-  <%= form.submit %>
+  <%= form.submit '投稿する'%>
 <% end %>
 <%= link_to '一覧画面に戻る', tasks_path %>
