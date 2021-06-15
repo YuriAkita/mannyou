@@ -37,7 +37,7 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'factory_bot_rails'
   gem 'rspec-rails'
-  gem 'spring-commands-rspec'
+  # gem 'spring-commands-rspec'
   gem 'faker'
   gem 'launchy'
 end
