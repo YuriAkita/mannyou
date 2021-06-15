@@ -2,17 +2,24 @@
 <p><%= notice %></p>
 <%= link_to '新規作成', new_task_path %>
 <%= link_to '終了期限でソートする', tasks_path(sort_expired: "true") %>
+<%= form_with url: tasks_path, method: :get, local: true do |form| %>
+  <%= form.text_field :title %>
+  <%= form.select :status, Task.statuses.keys, include_blank: true %>
+  <%= form.submit '検索する' %>
+<% end %>
 <table>
   <tr>
     <th>タスク名</th>
     <th>詳しい内容</th>
     <th>終了期限</th>
+    <th>ステータス</th>
   </tr>
 <% @tasks.each do |task| %>
   <tr class="task_row">
     <td><%= task.title %></td>
     <td><%= task.content %></td>
     <td><%= task.task_deadline %></td>
+    <td><%= task.status %></td>
     <td><%= link_to '詳細', task_path(task.id) %></td>
     <td><%= link_to '編集', edit_task_path(task.id) %></td>
     <td><%= link_to '削除', task_path(task.id), method: :delete , data: { confirm: '本当に編集していいですか？' } %></td>

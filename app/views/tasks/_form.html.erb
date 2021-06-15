@@ -26,6 +26,11 @@
     <%= form.date_field :task_deadline %>
   </div>
 
+  <div class="task_status">
+    <%= form.label :ステータス %>
+    <%= form.select :status, Task.statuses.keys %>
+  </div>
+
   <%= form.submit '投稿する'%>
 
 <% end %>
