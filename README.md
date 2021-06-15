@@ -23,10 +23,12 @@
 | profile_image:text     |
 
 デプロイ方法
-heroku rogin
-heroku create
-bundle lock --add-platform x86_64-linux
-git add .
-git commit -m "comment"
-git push heroku step2:master
-heroku open
+```
+$ heroku rogin
+$ heroku create
+$ bundle lock --add-platform x86_64-linux
+$ git add .
+$ git commit -m "comment"
+$ git push heroku step2:master
+$ heroku open
+```
