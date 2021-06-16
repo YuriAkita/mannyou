@@ -7,6 +7,7 @@ class TasksController < ApplicationController
     @tasks = Task.all.order(priority: :asc) if params[:sort_priority]
     @tasks = @tasks.title_search(params[:title]) if params[:title].present?
     @tasks = @tasks.status_search(params[:status]) if params[:status].present? && params[:status] != ""
+    @tasks = Task.page(params[:page]).per(10)
   end
 
   def new
