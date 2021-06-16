@@ -10,5 +10,7 @@ FactoryBot.define do
   factory :second_task, class: Task do
     title { 'Factoryで作ったデフォルトのタイトル２' }
     content { 'Factoryで作ったデフォルトのコンテント２' }
+    task_deadline { '002021-11-01' }
+    status { '着手中' }
   end
 end
