@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< Updated upstream
-ActiveRecord::Schema.define(version: 2021_06_17_072304) do
-=======
 ActiveRecord::Schema.define(version: 2021_06_17_144409) do
->>>>>>> Stashed changes
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
