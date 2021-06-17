@@ -15,6 +15,8 @@
   <%= form.select :priority, Task.priorities.keys, include_blank: true %>
   <%= form.submit '検索する', id: 'tasks-index_search-button' %>
 <% end %>
+<br>
+<h1>MY ALL TASK</h1>
 <table class="table table-hover shadow-sm p-3 mb-5 bg-white rounded">
   <thead>
     <tr>
