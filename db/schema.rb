@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< Updated upstream
 ActiveRecord::Schema.define(version: 2021_06_17_072304) do
+=======
+ActiveRecord::Schema.define(version: 2021_06_17_144409) do
+>>>>>>> Stashed changes
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +28,15 @@ ActiveRecord::Schema.define(version: 2021_06_17_072304) do
     t.integer "status", default: 0, null: false
     t.integer "priority", default: 0, null: false
     t.index ["title"], name: "index_tasks_on_title"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end
