@@ -1,3 +1,90 @@
 // Place all the styles related to the tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+// .create_btn {
+//   margin-top: 20px;
+//   margin-bottom: 20px;
+//   font-size: 1.5rem;
+//   display: inline-block;
+//   padding: 10px 30px;
+//   text-decoration: none;
+//   border: 1px;
+//   background: blue;
+//   color: white;
+//   border-radius:10px;
+//   -webkit-transition: all 0.3s ease;
+//   -moz-transition: all 0.3s ease;
+//   -o-transition: all 0.3s ease;
+//   transition: all  0.3s ease;
+// }
+
+.brn-area {
+  padding: 0 10px;
+}
+
+.create_btn {
+    text-decoration: none;
+    background: black;
+    text-align:center;
+    border:2px solid black;
+    color: white;
+    font-size: 1.3rem;
+    font-weight:bold;
+    border-radius:20px;
+    padding: 15px;
+    transition: all 0.5s ease;
+}
+.create_btn:hover{
+    background:#FFFFFF;
+    color: black;
+    box-shadow:none;
+}
+
+.input_title {
+  position: relative;
+  width: 500px;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+.input_content {
+  position: relative;
+  width: 500px;
+  height: 150px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+h1 {
+  color: white;
+}
+
+.form {
+  color: white;
+}
+
+.pulldown {
+  margin-top: 20px;
+  font-size: 2rem;
+  width: 150px;
+  border: none;
+}
+
+.task_status {
+  padding-top: 10px;
+  font-size: 1.5rem;
+}
+
+.task_priority {
+  font-size: 1.5rem;
+}
+
+.container {
+  background-color: white;
+  opacity: 0.8;
+  width: 600px;
+  border-radius: 5px;
+}

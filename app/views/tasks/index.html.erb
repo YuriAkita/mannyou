@@ -1,18 +1,48 @@
-<h1>タスク一覧</h1>
 <p><%= notice %></p>
-<table>
-  <tr>
-    <th>タイトル</th>
-    <th>内容</th>
-  </tr>
-<% @tasks.each do |task| %>
-  <tr class="task_row">
-    <td><%= task.title %></td>
-    <td><%= task.content %></td>
-    <td><%= link_to '詳細', task_path(task.id) %></td>
-    <td><%= link_to '編集', edit_task_path(task.id) %></td>
-    <td><%= link_to '削除', task_path(task.id), method: :delete , data: { confirm: '本当に編集していいですか？' } %></td>
-  </tr>
+<br>
+<div class="btn-area">
+  <%= link_to 'Create New Task', new_task_path, class:"create_btn" %>
+</div>
+<br><br>
+<%= link_to '終了期限でソートする', tasks_path(sort_expired: "true") %>
+<%= link_to '優先順位でソートする', tasks_path(sort_priority: "true") %>
+<%= form_with url: tasks_path, method: :get, local: true do |form| %>
+  <%= form.label :タスク名%>
+  <%= form.text_field :title %>
+  <%= form.label :ステータス名%>
+  <%= form.select :status, Task.statuses.keys, include_blank: true %>
+  <%= form.label :Label%>
+  <%= form.select :priority, Task.priorities.keys, include_blank: true %>
+  <%= form.submit '検索する', id: 'tasks-index_search-button' %>
 <% end %>
+<br>
+<h1>MY ALL TASK</h1>
+<table class="table table-hover shadow-sm p-3 mb-5 bg-white rounded">
+  <thead>
+    <tr>
+      <th>タスク名</th>
+      <th>詳しい内容</th>
+      <th>終了期限</th>
+      <th>ステータス</th>
+      <th>優先順位</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr class="task_row">
+        <td id=<%= "tasks-index_row_title-#{task.id}" %>><%= task.title %></td>
+        <td id=<%= "tasks-index_row_content-#{task.id}" %>><%= task.content %></td>
+        <td id=<%= "tasks-index_row_task_deadline-#{task.id}" %>><%= task.task_deadline %></td>
+        <td id=<%= "tasks-index_row_status-#{task.id}" %>><%= task.status %></td>
+        <td id=<%= "tasks-index_row_priority-#{task.id}" %>><%= task.priority %></td>
+        <td><%= link_to '詳細', task_path(task.id) , class:"btn btn-sm btn-outline-secondary"%></td>
+        <td><%= link_to '編集', edit_task_path(task.id) , class:"btn btn-sm btn-outline-secondary"%></td>
+        <td><%= link_to '削除', task_path(task.id), method: :delete , data: { confirm: '本当に編集していいですか？' } , class:"btn btn-sm btn-outline-secondary"%></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
-<%= link_to '新しくブログを投稿する', new_task_path %>
+<%= paginate @tasks %>

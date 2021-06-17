@@ -5,9 +5,9 @@
 | users_id        |
 | title:string    |
 | content:text    |
-| status:string   |
-| task_deadline   |
-| priority:string |
+| status:integer   |
+| task_deadline:date   |
+| priority:integer |
 
 | task_lebels           |
 | --------------------- |
@@ -20,7 +20,6 @@
 | name:string            |
 | email:string           |
 | password_dijest:string |
-| profile_image:text     |
 
 デプロイ方法
 ```

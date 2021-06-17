@@ -1,4 +1,5 @@
 <%= form_with( model: @task, local: true, url: choose_new_or_edit ) do |form| %>
+
   <% if @task.errors.any? %>
     <div id="error_explanation">
       <h2><%= @task.errors.count %>件のエラーがあります。</h2>
@@ -9,14 +10,37 @@
       </ul>
     </div>
   <% end %>
-  <div class="blog_title">
-    <%= form.label :タスク名 %>
-    <%= form.text_field :title %>
-  </div>
-  <div class="blog_content">
-    <%= form.label :タスク詳細 %>
-    <%= form.text_field :content %>
-  </div>
-  <%= form.submit '投稿する'%>
+    <div class="task_title form">
+      <%= form.label :タスク名, class:"label" %><br>
+      <%= form.text_field :title, class:"input_title"%>
+    </div>
+
+    <div class="task_content form">
+      <%= form.label :詳しい内容 ,class:"label"%><br>
+      <%= form.text_field :content, class:"input_content" %>
+    </div>
+
+    <div class="task_deadline form">
+      <%= form.label :終了期限 %>
+      <%= form.date_field :task_deadline %>
+    </div>
+
+    <div class="task_status form">
+      <%= form.label :ステータス %>
+      <%= form.select :status, Task.statuses.keys %>
+    </div>
+
+    <div class="task_priority form">
+      <%= form.label :優先順位 %>
+      <%= form.select :priority, Task.priorities.keys %>
+    </div>
+    <br>
+
+    <%= form.submit '投稿する', id: 'tasks-form_submit', class:"create_btn" %>
+
+    <br>
+    <br>
+
 <% end %>
+
 <%= link_to '一覧画面に戻る', tasks_path %>
