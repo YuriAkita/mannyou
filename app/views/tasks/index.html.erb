@@ -4,14 +4,12 @@
   <%= link_to 'Create New Task', new_task_path, class:"create_btn" %>
 </div>
 <br><br>
-<%= link_to '終了期限でソートする', tasks_path(sort_expired: "true") %>
-<%= link_to '優先順位でソートする', tasks_path(sort_priority: "true") %>
 <%= form_with url: tasks_path, method: :get, local: true do |form| %>
-  <%= form.label :タスク名%>
+  <%= form.label :タスク名, class:"form" %>
   <%= form.text_field :title %>
-  <%= form.label :ステータス名%>
+  <%= form.label :ステータス名, class:"form" %>
   <%= form.select :status, Task.statuses.keys, include_blank: true %>
-  <%= form.label :Label%>
+  <%= form.label :Label, class:"form" %>
   <%= form.select :priority, Task.priorities.keys, include_blank: true %>
   <%= form.submit '検索する', id: 'tasks-index_search-button' %>
 <% end %>
@@ -22,9 +20,9 @@
     <tr>
       <th>タスク名</th>
       <th>詳しい内容</th>
-      <th>終了期限</th>
+      <th><%= link_to '終了期限 ▼', tasks_path(sort_expired: "true") %></th>
       <th>ステータス</th>
-      <th>優先順位</th>
+      <th><%= link_to '優先順位 ▼', tasks_path(sort_priority: "true") %></th>
       <th></th>
       <th></th>
       <th></th>
