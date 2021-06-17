@@ -28,3 +28,7 @@
    background-image: url("/assets/background.png");
    background-size: cover;
  }
+
+ table {
+   padding-left: 200px;
+ }
