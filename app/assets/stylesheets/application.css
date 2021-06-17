@@ -32,3 +32,9 @@
  table {
    padding-left: 200px;
  }
+
+ header {
+ height: 70px;
+ padding-top: 10px;
+ background-color: black;
+ }
