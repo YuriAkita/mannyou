@@ -1,3 +1,41 @@
 // Place all the styles related to the tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+// .create_btn {
+//   margin-top: 20px;
+//   margin-bottom: 20px;
+//   font-size: 1.5rem;
+//   display: inline-block;
+//   padding: 10px 30px;
+//   text-decoration: none;
+//   border: 1px;
+//   background: blue;
+//   color: white;
+//   border-radius:10px;
+//   -webkit-transition: all 0.3s ease;
+//   -moz-transition: all 0.3s ease;
+//   -o-transition: all 0.3s ease;
+//   transition: all  0.3s ease;
+// }
+
+.brn-area {
+  padding: 0 10px;
+}
+
+.create_btn {
+    text-decoration: none;
+    background:#00ebc7;
+    text-align:center;
+    border:2px solid #00ebc7;
+    color:#FFFFFF;
+    font-size: 1.3rem;
+    font-weight:bold;
+    border-radius:20px;
+    padding: 15px;
+    transition: all 0.5s ease;
+}
+.create_btn:hover{
+    background:#FFFFFF;
+    color:#00ebc7;
+    box-shadow:none;
+}

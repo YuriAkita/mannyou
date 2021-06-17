@@ -15,6 +15,7 @@ RSpec.describe 'タスク管理機能', type: :system do
        fill_in 'task[task_deadline]', with: '002021-12-24'
        select '着手中', from: 'task[status]'
        select '低', from: 'task[priority]'
+       binding.irb
        click_button '投稿する'
        expect(page).to have_content 'test_title'
        expect(page).to have_content 'test_content'

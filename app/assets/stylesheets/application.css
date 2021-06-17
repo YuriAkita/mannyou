@@ -14,3 +14,15 @@
  *= require_tree .
  *= require_self
  */
+ html {
+   font-size: 62.5%;
+   min-height: 100%;
+   margin: 0 auto;
+   position: relative;
+ }
+
+ body {
+   text-align: center;
+   font-size: 1rem;
+   margin-bottom: 100px;
+ }
