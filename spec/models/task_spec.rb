@@ -17,7 +17,7 @@ describe 'タスクモデル機能', type: :model do
 
     context 'タスクのタイトルと詳細に内容が記載されている場合' do
       it 'バリデーションが通る' do
-        task = Task.new(title: 'test', content: 'test')
+        task = Task.new(title: 'test', content: 'test', task_deadline: '002021-10-10', status: '完了', priority: '高')
         expect(task).to be_valid
       end
     end
