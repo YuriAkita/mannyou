@@ -36,7 +36,7 @@
     <%= form.select :priority, Task.priorities.keys %>
   </div>
 
-  <%= form.submit '投稿する'%>
+  <%= form.submit '投稿する', id: 'tasks-form_submit' %>
 
 <% end %>
 

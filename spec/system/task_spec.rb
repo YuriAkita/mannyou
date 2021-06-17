@@ -15,8 +15,7 @@ RSpec.describe 'タスク管理機能', type: :system do
        fill_in 'task[task_deadline]', with: '002021-12-24'
        select '着手中', from: 'task[status]'
        select '低', from: 'task[priority]'
-       binding.irb
-       click_button '投稿する'
+       click_button 'tasks-form_submit'
        expect(page).to have_content 'test_title'
        expect(page).to have_content 'test_content'
        expect(page).to have_content '2021-12-24'
@@ -25,24 +24,28 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
 
-#Selenium::WebDriver::Error::StaleElementReferenceError:stale element reference: element is not attached to the page document
     context '終了期限でソートするをクリックした場合' do
       it '終了期限が一番短いものが一番上に表示される' do
         visit tasks_path
         click_link '終了期限でソートする'
+        sleep(1)
         task_list = all('.task_row')
-        expect(task_list[0]).to have_content '該当タスクの内容が表示される'
+        @tasks = Task.all.order(task_deadline: :asc)
+        expect(task_list[0].find_by_id("tasks-index_row_title-#{@tasks.first.id}")).to have_content @tasks.first.title
+        expect(task_list[0].find_by_id("tasks-index_row_content-#{@tasks.first.id}")).to have_content @tasks.first.content
       end
     end
   end
 
-#Failure/Error: expect(task_list[0]).to have_content 'test1'
   context '優先順位でソートするをクリックした場合' do
     it '優先度が高いものが上に表示される' do
       visit tasks_path
       click_link '優先順位でソートする'
+      sleep(1)
       task_list = all('.task_row')
-      expect(task_list[0]).to have_content 'test1'
+      @tasks = Task.all.order(priority: :asc)
+      expect(task_list[0].find_by_id("tasks-index_row_title-#{@tasks.first.id}")).to have_content @tasks.first.title
+      expect(task_list[0].find_by_id("tasks-index_row_content-#{@tasks.first.id}")).to have_content @tasks.first.content
     end
   end
 
@@ -51,15 +54,18 @@ RSpec.describe 'タスク管理機能', type: :system do
       it '作成済みのタスク一覧が表示される' do
         task = FactoryBot.create(:task, title: 'task')
         visit tasks_path
-        expect(page).to have_content 'task'
+        expect(page).to have_content task.title
       end
     end
 
     context 'タスクが作成日時の降順に並んでいる場合' do
       it '新しいタスクが一番上に表示される' do
         visit tasks_path
+        sleep(1)
         task_list = all('.task_row')
-        expect(task_list[0]).to have_content 'task3'
+        @tasks = Task.all.order(created_at: :desc)
+        expect(task_list[0].find_by_id("tasks-index_row_title-#{@tasks.first.id}")).to have_content @tasks.first.title
+        expect(task_list[0].find_by_id("tasks-index_row_content-#{@tasks.first.id}")).to have_content @tasks.first.content
       end
     end
   end
@@ -69,7 +75,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       it '該当タスクの内容が表示される' do
         visit tasks_path
         visit task_path(@task.id)
-        expect(page).to have_content '該当タスクの内容が表示される'
+        expect(page).to have_content @task.content
       end
     end
   end
@@ -79,7 +85,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       it "検索キーワードを含むタスクで絞り込まれる" do
         visit tasks_path
         fill_in 'title', with: 'task3'
-        click_button '検索する'
+        click_button 'tasks-index_search-button'
         expect(page).to have_content 'task3'
       end
     end
@@ -88,7 +94,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       it "ステータスに完全一致するタスクが絞り込まれる" do
         visit tasks_path
         select '着手中', from: 'status'
-        click_button '検索する'
+        click_button 'tasks-index_search-button'
         expect(page).to have_content 'task2'
       end
     end
@@ -98,7 +104,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit tasks_path
         fill_in 'title', with: 'task2'
         select '着手中', from: 'status'
-        click_button '検索する'
+        click_button 'tasks-index_search-button'
         expect(page).to have_content 'task2'
       end
     end
