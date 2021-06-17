@@ -17,6 +17,15 @@
       <div class="logo">
         <%= image_tag 'logo.png' %>
       </div>
+      <% if logged_in? %>
+        <%= link_to "PROFILE", user_path(current_user.id) %>
+        <%= link_to "TASKS", tasks_path %>
+        <%= link_to "CREATE TASK", new_task_path %>
+        <%= link_to "LOGOUT", session_path(current_user.id), method: :delete %>
+      <% else %>
+        <%= link_to "SIGN UP", new_user_path %>
+        <%= link_to "LOGIN", new_session_path %>
+      <% end %>
     </header>
     <%= yield %>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
