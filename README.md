@@ -32,16 +32,16 @@ webpacker (~> 5.0)
 ```
 ### herokuへのデプロイ
 ```
-heroku create
-rails assets:precompile RAILS_ENV=production
-bundle lock --add-platform x86_64-linux
-git add .
-git commit -m "comment"
-heroku buildpacks:set heroku/ruby #buildパックの追加
-heroku buildpacks:add --index 1 heroku/nodejs #buildパックの追加
-git push heroku [branchname]:master
+% heroku create
+% rails assets:precompile RAILS_ENV=production
+% bundle lock --add-platform x86_64-linux
+% git add .
+% git commit -m "comment"
+% heroku buildpacks:set heroku/ruby #buildパックの追加
+% heroku buildpacks:add --index 1 heroku/nodejs #buildパックの追加
+% git push heroku [branchname]:master
 ```
 ###  herokuサイトへ遷移
 ```
-heroku open
+% heroku open
 ```
