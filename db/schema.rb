@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2021_06_18_050632) do
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.date "task_deadline"
+    t.date "task_deadline", null: false
     t.integer "status", default: 0, null: false
     t.integer "priority", default: 0, null: false
     t.bigint "user_id"
