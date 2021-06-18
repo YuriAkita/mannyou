@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :ensure_current_user, only: %i[ edit update ]
 
   def index
     @tasks = Task.all.order(created_at: :desc)
@@ -59,6 +60,13 @@ class TasksController < ApplicationController
 
   def set_task
     @task = Task.find(params[:id])
+  end
+
+  def ensure_current_user
+    if @current_user.id != @task.user.id
+      flash[:notice]="権限がありません"
+      redirect_to tasks_path
+    end
   end
 
 end
