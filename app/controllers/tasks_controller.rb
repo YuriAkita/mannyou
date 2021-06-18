@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
-  before_action :ensure_current_user, only: %i[ edit update ]
+  before_action :ensure_current_user, only: %i[ edit update show ]
 
   def index
     @tasks = Task.all.order(created_at: :desc)
