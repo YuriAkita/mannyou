@@ -2,12 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-body {
-  font-family: 'Open Sans';
-  font-weight: 100;
-  // display: flex;
-  overflow: hidden;
-}
 input {
   ::-webkit-input-placeholder {
      color: rgba(255,255,255,0.7);
@@ -102,12 +96,3 @@ input {
   background: rgba(0,0,0,0.7);
   z-index: -1;
 }
-
-// @keyframes hue-rotate {
-//   from {
-//     -webkit-filter: grayscale(30%) hue-rotate(0deg);
-//   }
-//   to {
-//     -webkit-filter: grayscale(30%) hue-rotate(360deg);
-//   }
-// }

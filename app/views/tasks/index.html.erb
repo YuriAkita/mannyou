@@ -14,37 +14,38 @@
   <%= form.submit '検索する', id: 'tasks-index_search-button' %>
 <% end %>
 <br>
-<h1>MY ALL TASK</h1>
-<table class="table table-hover shadow-sm p-3 mb-5 bg-white rounded">
-  <thead>
-    <tr>
-      <th>ユーザー名</th>
-      <th>タスク名</th>
-      <th>詳しい内容</th>
-      <th><%= link_to '終了期限 ▼', tasks_path(sort_expired: "true") %></th>
-      <th>ステータス</th>
-      <th><%= link_to '優先順位 ▼', tasks_path(sort_priority: "true") %></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tasks.each do |task| %>
-    <% if task.user_id == current_user.id %>
-      <tr class="task_row">
-        <td><%= task.user.name %></td>
-        <td id=<%= "tasks-index_row_title-#{task.id}" %>><%= task.title %></td>
-        <td id=<%= "tasks-index_row_content-#{task.id}" %>><%= task.content %></td>
-        <td id=<%= "tasks-index_row_task_deadline-#{task.id}" %>><%= task.task_deadline %></td>
-        <td id=<%= "tasks-index_row_status-#{task.id}" %>><%= task.status %></td>
-        <td id=<%= "tasks-index_row_priority-#{task.id}" %>><%= task.priority %></td>
-        <td><%= link_to '詳細', task_path(task.id) , class:"btn btn-sm btn-outline-secondary"%></td>
-        <td><%= link_to '編集', edit_task_path(task.id) , class:"btn btn-sm btn-outline-secondary"%></td>
-        <td><%= link_to '削除', task_path(task.id), method: :delete , data: { confirm: '本当に編集していいですか？' } , class:"btn btn-sm btn-outline-secondary"%></td>
+<div class="index-table">
+  <table class="table table-hover shadow-sm p-3 mb-5 bg-white rounded">
+    <thead>
+      <tr>
+        <th>ユーザー名</th>
+        <th>タスク名</th>
+        <th>詳しい内容</th>
+        <th><%= link_to '終了期限 ▼', tasks_path(sort_expired: "true") %></th>
+        <th>ステータス</th>
+        <th><%= link_to '優先順位 ▼', tasks_path(sort_priority: "true") %></th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @tasks.each do |task| %>
+      <% if task.user_id == current_user.id %>
+        <tr class="task_row">
+          <td><%= task.user.name %></td>
+          <td id=<%= "tasks-index_row_title-#{task.id}" %>><%= task.title %></td>
+          <td id=<%= "tasks-index_row_content-#{task.id}" %>><%= task.content %></td>
+          <td id=<%= "tasks-index_row_task_deadline-#{task.id}" %>><%= task.task_deadline %></td>
+          <td id=<%= "tasks-index_row_status-#{task.id}" %>><%= task.status %></td>
+          <td id=<%= "tasks-index_row_priority-#{task.id}" %>><%= task.priority %></td>
+          <td><%= link_to '詳細', task_path(task.id) , class:"btn btn-sm btn-outline-secondary"%></td>
+          <td><%= link_to '編集', edit_task_path(task.id) , class:"btn btn-sm btn-outline-secondary"%></td>
+          <td><%= link_to '削除', task_path(task.id), method: :delete , data: { confirm: '本当に編集していいですか？' } , class:"btn btn-sm btn-outline-secondary"%></td>
+        </tr>
+      <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <%= paginate @tasks %>
