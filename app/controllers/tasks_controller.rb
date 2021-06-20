@@ -3,6 +3,7 @@ class TasksController < ApplicationController
   before_action :ensure_current_user, only: %i[ edit update show ]
 
   def index
+    @tasks = Task.all.includes(:user)
     @tasks = Task.all.order(created_at: :desc)
     @tasks = Task.all.order(task_deadline: :asc) if params[:sort_expired]
     @tasks = Task.all.order(priority: :asc) if params[:sort_priority]

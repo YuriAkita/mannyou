@@ -1,6 +1,4 @@
 <br>
-<h3>sign up</h3>
-
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
@@ -12,17 +10,23 @@
   </div>
 <% end %>
 
-<%= form_with(model: @user, local: true) do |f| %>
+  <br>
+    <p class="login-text">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fas fa-user-plus fa-stack-1x"></i>
+      </span>
+    </p>
 
-  <%= f.label :name %><br>
-  <%= f.text_field :name %><br>
-  <%= f.label :email %><br>
-  <%= f.email_field :email %><br>
-  <%= f.label :password %><br>
-  <%= f.password_field :password %><br>
-  <%= f.label :password_confirmation %><br>
-  <%= f.password_field :password_confirmation %><br><br>
+  <%= form_with(model: @user, local: true) do |f| %>
+      <div class="login-form">
+        <%= f.text_field :name, class:'sign-name', placeholder:'名前' %><br>
+        <%= f.email_field :email, class:'sign-email', placeholder:'Example@email.com' %><br>
+        <%= f.password_field :password, class:'sign-password', placeholder:'パスワード' %><br>
+        <%= f.password_field :password_confirmation, class:'sign-password_confirmation', placeholder:'確認用パスワード' %><br><br>
+      </div>
 
-  <%= f.submit "Create my account" %><br>
+    <%= f.submit "Create my account", class:'sign-submit' %><br>
 
-<% end %>
+  <% end %>
+  <div class="underlay-black"></div>

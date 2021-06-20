@@ -1,8 +1,18 @@
-<h1>Log in</h1>
-<%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
-  <%= f.label :email %><br>
-  <%= f.email_field :email %><br>
-  <%= f.label :password %><br>
-  <%= f.password_field :password %><br>
-  <%= f.submit "Log in" %><br>
-<% end %>
+<br>
+  <p class="login-text">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-lock fa-stack-1x"></i>
+    </span>
+  </p>
+  <div class='login-form'>
+    <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+      <%= f.label :メールアドレス %>
+      <%= f.text_field :email, class: 'login-email', placeholder: 'Example@email.com' %><br>
+      <%= f.label :パスワード %>
+      <%= f.password_field :password, class: 'login-password', placeholder: 'Password' %><br>
+      <br>
+      <%= f.submit 'LOGIN',class:"login-submit" %>
+    <% end %>
+  </div>
+  <div class="underlay-black"></div>
