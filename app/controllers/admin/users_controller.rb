@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
 
   def index
-    @users = User.all.order(created_at: :desc)
+    @users = User.select(:id, :name, :email, :admin).order(created_at: :desc).includes(:tasks)
   end
 
   def new
