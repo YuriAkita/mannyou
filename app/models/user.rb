@@ -7,14 +7,18 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, on: :create
   has_many :tasks, dependent: :destroy
   before_destroy :check_admin_user_exist
+  before_update :check_admin_update_exist
 
   def check_admin_user_exist
-    if User.where(admin: true).count < 1
-    else
+    if User.where(admin: true).count <= 1 && self.admin == true
       throw(:abort)
-      errors.add :base, '少なくとも1つ、管理者用の認証が必要です'
     end
   end
 
+  def check_admin_update_exist
+    if User.where(admin: true).count == 1 && self.admin == false
+      throw(:abort)
+    end
+  end
 
 end
