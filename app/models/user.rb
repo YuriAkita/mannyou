@@ -9,7 +9,7 @@ class User < ApplicationRecord
   before_destroy :check_admin_user_exist
 
   def check_admin_user_exist
-    if User.where(admin: true).count < 2
+    if User.where(admin: true).count < 1
     else
       throw(:abort)
       errors.add :base, '少なくとも1つ、管理者用の認証が必要です'
