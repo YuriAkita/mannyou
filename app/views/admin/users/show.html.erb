@@ -1,1 +1,35 @@
-aaa
+<h1>管理者画面 ユーザー詳細</h1>
+
+<h1><%= @user.name %></h1>
+<h1>メールアドレス: <%= @user.email %></h1>
+<h1>管理者権限: <%= @user.admin %></h1>
+
+
+<table class="table table-hover shadow-sm p-3 mb-5 bg-white rounded">
+  <thead>
+    <tr>
+      <th>タスク名</th>
+      <th>詳しい内容</th>
+      <th>終了期限</th>
+      <th>ステータス</th>
+      <th>優先順位</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.tasks.each do |task| %>
+      <tr class="task_row">
+        <td><%= task.title %></td>
+        <td><%= task.content %></td>
+        <td><%= task.task_deadline %></td>
+        <td><%= task.status %></td>
+        <td><%= task.priority %></td>
+        <td><%= link_to '詳細', task_path(task.id) , class:"btn btn-sm btn-outline-secondary"%></td>
+        <td><%= link_to '編集', edit_task_path(task.id) , class:"btn btn-sm btn-outline-secondary"%></td>
+        <td><%= link_to '削除', task_path(task.id), method: :delete , data: { confirm: '本当に編集していいですか？' } , class:"btn btn-sm btn-outline-secondary"%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
