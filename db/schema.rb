@@ -10,18 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_22_080209) do
-
+ActiveRecord::Schema.define(version: 2021_06_23_183327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "label_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "labelings", force: :cascade do |t|
+    t.bigint "task_id", null: false
+    t.bigint "label_category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["label_category_id"], name: "index_labelings_on_label_category_id"
+    t.index ["task_id"], name: "index_labelings_on_task_id"
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.string "title", null: false
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "task_deadline", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "task_deadline", default: -> { "CURRENT_TIMESTAMP" }
     t.integer "status", default: 0, null: false
     t.integer "priority", default: 0, null: false
     t.bigint "user_id"
@@ -39,5 +53,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_080209) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "labelings", "label_categories"
+  add_foreign_key "labelings", "tasks"
   add_foreign_key "tasks", "users"
 end
