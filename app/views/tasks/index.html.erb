@@ -1,7 +1,7 @@
 <p><%= notice %></p>
 <br>
 <div class="btn-area">
-  <%= link_to 'Create New Task', new_task_path, class:"create_btn" %>
+  <%= link_to '新しいタスクを作成する', new_task_path, class:"create_btn" %>
 </div>
 <br><br>
 <%= form_with url: tasks_path, method: :get, local: true do |form| %>

@@ -24,10 +24,12 @@
  body {
    text-align: center;
    font-size: 1rem;
-   margin-bottom: 100px;
-   background-image: url("/assets/background2.jpg");
+   background-image: url("/assets/background6.jpg");
    background-size: cover;
-   font-family: 'Open Sans';
+   /* font-family: 'Trebuchet MS'; */
+   margin: 0;
+   padding: 0;
+   font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
  }
 
  table {
@@ -35,7 +37,39 @@
  }
 
  header {
- height: 70px;
- padding-top: 10px;
- background-color: black;
+   height: 70px;
+   width: 100%;
+   padding: 10px 4% 10px;
+   top: 0;
+   display: flex;
+   align-items: center;
  }
+
+ h1 {
+   margin: 0; padding: 0;
+   font-size: 20px;
+ }
+
+ .link {
+   text-decoration: none;
+   color: white;
+ }
+ .link:hover {
+   text-decoration: none;
+   color: #EC8232;
+ }
+
+ ul {
+   list-style: none;
+   margin: 0;
+   display: flex;
+}
+
+li {
+   margin: 0 0 0 15px;
+   font-size: 14px;
+}
+
+nav {
+   margin: 0 0 0 auto;
+}

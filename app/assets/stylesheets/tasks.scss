@@ -23,22 +23,21 @@
 }
 
 .create_btn {
+  font-size: 1.3rem;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  margin: 1rem auto;
+  min-width: 1px;
+  padding: 1.5rem;
+  transition: 250ms background ease-in;
+  &:hover, &:focus {
+    background: white;
+    color: #EC8232;
     text-decoration: none;
-    background: black;
-    text-align:center;
-    border:2px solid black;
-    color: white;
-    font-size: 1.3rem;
-    font-weight:bold;
-    border-radius:20px;
-    padding: 15px;
-    transition: all 0.5s ease;
-}
-.create_btn:hover{
-    background:#FFFFFF;
-    color: black;
-    box-shadow:none;
-}
+    transition: 250ms background ease-in;
+  }
+  }
 
 .input_title {
   position: relative;
