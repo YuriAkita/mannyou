@@ -1,0 +1,2 @@
+class LabelCategory < ApplicationRecord
+end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :label_categories
   root to: 'tasks#index'
   resources :tasks do
     collection do
