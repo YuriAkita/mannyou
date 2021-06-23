@@ -2,9 +2,10 @@ require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
   let!(:user) { FactoryBot.create(:user) }
   let!(:task) { FactoryBot.create(:task, title: '該当タスクの内容が表示される', priority: '低', user: user)}
-  let!(:task1) { FactoryBot.create(:task, title: 'task1', task_deadline: '002021-11-01', status: '未着手', priority: '高', user: user)}
-  let!(:task2) { FactoryBot.create(:task, title: 'task2', task_deadline: '002021-12-01', status: '着手中', priority: '中', user: user)}
+  let!(:task1) { FactoryBot.create(:task, title: 'task1', task_deadline: '002021-11-01', status: '未着手', priority: '高', user: user) }
+  let!(:task2) { FactoryBot.create(:task, title: 'task2', task_deadline: '002021-12-01', status: '着手中', priority: '中', user: user) }
   let!(:task3) { FactoryBot.create(:task, title: 'task3', task_deadline: '002022-01-01', status: '完了', priority: '低', user: user)}
+
   before do
     visit new_session_path
     fill_in 'session[email]', with: 'test1@email.com'
@@ -12,6 +13,7 @@ RSpec.describe 'タスク管理機能', type: :system do
     click_button 'commit'
     visit tasks_path
   end
+
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
