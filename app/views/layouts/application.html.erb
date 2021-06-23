@@ -4,6 +4,7 @@
     <title>TackPocket</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-jJ2L/Ujk8jWEwtIXPFEk3X+f20QKnj4IIscn+JZzxqkbAUC79idDdiAhAi2E7czT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -17,6 +18,18 @@
       <div class="logo">
         <%= image_tag 'logo.png' %>
       </div>
+      <% if logged_in? %>
+        <%= link_to "PROFILE", user_path(current_user.id) %>
+        <%= link_to "TASKS", tasks_path %>
+        <%= link_to "CREATE TASK", new_task_path %>
+        <%= link_to "LOGOUT", session_path(current_user.id), method: :delete %>
+      <% else %>
+        <%= link_to "SIGN UP", new_user_path %>
+        <%= link_to "LOGIN", new_session_path %>
+      <% end %>
+      <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+      <% end %>
     </header>
     <%= yield %>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -25,12 +25,14 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 gem 'rexml'
+gem 'bcrypt'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'uglifier'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.1.3'
+gem 'faker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -40,7 +42,6 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'factory_bot_rails'
   gem 'rspec-rails'
-  gem 'faker'
   gem 'launchy'
 end
 

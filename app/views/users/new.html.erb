@@ -1,0 +1,32 @@
+<br>
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <br>
+    <p class="login-text">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fas fa-user-plus fa-stack-1x"></i>
+      </span>
+    </p>
+
+  <%= form_with(model: @user, local: true) do |f| %>
+      <div class="login-form">
+        <%= f.text_field :name, class:'sign-name', placeholder:'名前' %><br>
+        <%= f.email_field :email, class:'sign-email', placeholder:'Example@email.com' %><br>
+        <%= f.password_field :password, class:'sign-password', placeholder:'パスワード' %><br>
+        <%= f.password_field :password_confirmation, class:'sign-password_confirmation', placeholder:'確認用パスワード' %><br><br>
+      </div>
+
+    <%= f.submit "Create my account", class:'sign-submit' %><br>
+
+  <% end %>
+  <div class="underlay-black"></div>

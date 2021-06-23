@@ -5,4 +5,12 @@ Rails.application.routes.draw do
       post :confirm
     end
   end
+
+  namespace :admin do
+    resources :users
+  end
+
+  resources :users, only: [:new, :create, :show]
+
+  resources :sessions, only: [:new, :create, :destroy]
 end

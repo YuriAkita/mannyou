@@ -1,0 +1,23 @@
+<br>
+<h1>管理者 ユーザー編集画面</h1>
+
+<br>
+  <p class="login-text">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fas fa-user-plus fa-stack-1x"></i>
+    </span>
+  </p>
+
+<%= form_with(model: [:admin, @user], local: true ) do |f| %>
+    <div class="login-form">
+      <%= f.text_field :name, class:'sign-name', placeholder:'名前' %><br>
+      <%= f.email_field :email, class:'sign-email', placeholder:'Example@email.com' %><br>
+      <h1><%= f.check_box :admin %>管理者権限付与</h1>
+      <br><br>
+    </div>
+
+  <%= f.submit '送信する', class:'sign-submit' %><br>
+
+<% end %>
+<div class="underlay-black"></div>

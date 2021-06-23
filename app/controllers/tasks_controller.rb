@@ -1,10 +1,12 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :ensure_current_user, only: %i[ edit update show ]
 
   def index
-    @tasks = Task.all.order(created_at: :desc)
-    @tasks = Task.all.order(task_deadline: :asc) if params[:sort_expired]
-    @tasks = Task.all.order(priority: :asc) if params[:sort_priority]
+    @tasks = Task.all.includes(:user)
+    @tasks = Task.all.order(created_at: :desc).includes(:user)
+    @tasks = Task.all.order(task_deadline: :asc).includes(:user) if params[:sort_expired]
+    @tasks = Task.all.order(priority: :asc).includes(:user) if params[:sort_priority]
     @tasks = @tasks.title_search(params[:title]) if params[:title].present?
     @tasks = @tasks.status_search(params[:status]) if params[:status].present? && params[:status] != ""
     @tasks = @tasks.priority_search(params[:priority]) if params[:priority].present? && params[:priority] != ""
@@ -16,7 +18,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if params[:back]
       render :new
     else
@@ -48,17 +50,24 @@ class TasksController < ApplicationController
   end
 
   def confirm
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     render :new if @task.invalid?
   end
 
   private
   def task_params
-    params.require(:task).permit(:title, :content, :task_deadline, :status, :priority)
+    params.require(:task).permit(:title, :content, :task_deadline, :status, :priority, :user_id)
   end
 
   def set_task
     @task = Task.find(params[:id])
+  end
+
+  def ensure_current_user
+    if @current_user.id != @task.user.id
+      flash[:notice]="権限がありません"
+      redirect_to tasks_path
+    end
   end
 
 end

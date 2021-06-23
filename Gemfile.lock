@@ -64,6 +64,7 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     autoprefixer-rails (10.2.5.1)
       execjs (> 0)
+    bcrypt (3.1.16)
     better_errors (2.9.1)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -102,7 +103,7 @@ GEM
       railties (>= 5.0.0)
     faker (2.18.0)
       i18n (>= 1.6, < 2)
-    ffi (1.15.1)
+    ffi (1.15.3)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.8.10)
@@ -274,6 +275,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  bcrypt
   better_errors
   binding_of_caller
   bootsnap (>= 1.4.4)
