@@ -1,4 +1,4 @@
 class Labeling < ApplicationRecord
-  belongs_to :task
-  belongs_to :label_category
+  belongs_to :task, optional: true
+  belongs_to :label_category, optional: true
 end

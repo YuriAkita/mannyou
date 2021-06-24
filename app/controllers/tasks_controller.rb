@@ -3,13 +3,14 @@ class TasksController < ApplicationController
   before_action :ensure_current_user, only: %i[ edit update show ]
 
   def index
-    @tasks = Task.all.includes(:user)
-    @tasks = Task.all.order(created_at: :desc).includes(:user)
-    @tasks = Task.all.order(task_deadline: :asc).includes(:user) if params[:sort_expired]
-    @tasks = Task.all.order(priority: :asc).includes(:user) if params[:sort_priority]
+    @tasks = current_user.tasks.includes(:user)
+    @tasks = @tasks.order(created_at: :desc).includes(:user)
+    @tasks = @tasks.order(task_deadline: :asc).includes(:user) if params[:sort_expired]
+    @tasks = @tasks.order(priority: :asc).includes(:user) if params[:sort_priority]
     @tasks = @tasks.title_search(params[:title]) if params[:title].present?
     @tasks = @tasks.status_search(params[:status]) if params[:status].present? && params[:status] != ""
     @tasks = @tasks.priority_search(params[:priority]) if params[:priority].present? && params[:priority] != ""
+    @tasks = @tasks.label_category_search(params[:label_category_id]) if params[:label_category_id].present? && params[:label_category_id] != ""
     @tasks = @tasks.page(params[:page]).per(10)
   end
 
