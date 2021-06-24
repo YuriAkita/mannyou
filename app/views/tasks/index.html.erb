@@ -24,6 +24,7 @@
         <th><%= link_to '終了期限 ▼', tasks_path(sort_expired: "true") %></th>
         <th>ステータス</th>
         <th><%= link_to '優先順位 ▼', tasks_path(sort_priority: "true") %></th>
+        <th>ラベル</th>
         <th></th>
         <th></th>
         <th></th>
@@ -39,6 +40,10 @@
           <td id=<%= "tasks-index_row_task_deadline-#{task.id}" %>><%= task.task_deadline %></td>
           <td id=<%= "tasks-index_row_status-#{task.id}" %>><%= task.status %></td>
           <td id=<%= "tasks-index_row_priority-#{task.id}" %>><%= task.priority %></td>
+          <td><% task.label_categorys.each do |label| %>
+                <%= label.name %>
+              <% end %>
+          </td>
           <td><%= link_to '詳細', task_path(task.id) , class:"btn btn-sm btn-outline-secondary"%></td>
           <td><%= link_to '編集', edit_task_path(task.id) , class:"btn btn-sm btn-outline-secondary"%></td>
           <td><%= link_to '削除', task_path(task.id), method: :delete , data: { confirm: '本当に編集していいですか？' } , class:"btn btn-sm btn-outline-secondary"%></td>
