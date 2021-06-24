@@ -27,6 +27,7 @@
             <li><%= link_to "TASKS", tasks_path, class:"link" %></li>
             <li><%= link_to "CREATE TASK", new_task_path, class:"link" %></li>
             <li><%= link_to "LOGOUT", session_path(current_user.id), method: :delete , class:"link"%></li>
+            <li><%= link_to "LABELS", label_categories_path, class:"link" %></li>
           <% else %>
             <li><%= link_to "SIGN UP", new_user_path, class:"link" %></li>
             <li><%= link_to "LOGIN", new_session_path, class:"link" %></li>

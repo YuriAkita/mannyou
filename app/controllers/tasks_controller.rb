@@ -49,14 +49,9 @@ class TasksController < ApplicationController
     redirect_to tasks_path, notice:"タスクを削除しました！"
   end
 
-  def confirm
-    @task = current_user.tasks.build(task_params)
-    render :new if @task.invalid?
-  end
-
   private
   def task_params
-    params.require(:task).permit(:title, :content, :task_deadline, :status, :priority, :user_id, { label_ids: [] })
+    params.require(:task).permit(:title, :content, :task_deadline, :status, :priority, :user_id, { label_category_ids: [] })
   end
 
   def set_task
