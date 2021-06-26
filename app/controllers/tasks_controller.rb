@@ -4,9 +4,9 @@ class TasksController < ApplicationController
 
   def index
     @tasks = current_user.tasks.includes(:user)
-    @tasks = @tasks.order(created_at: :desc).includes(:user)
-    @tasks = @tasks.order(task_deadline: :asc).includes(:user) if params[:sort_expired]
-    @tasks = @tasks.order(priority: :asc).includes(:user) if params[:sort_priority]
+    @tasks = @tasks.order(created_at: :desc) if params[:sort_expired].nil? && params[:sort_priority].nil?
+    @tasks = @tasks.order(task_deadline: :asc) if params[:sort_expired]
+    @tasks = @tasks.order(priority: :asc) if params[:sort_priority]
     @tasks = @tasks.title_search(params[:title]) if params[:title].present?
     @tasks = @tasks.status_search(params[:status]) if params[:status].present? && params[:status] != ""
     @tasks = @tasks.priority_search(params[:priority]) if params[:priority].present? && params[:priority] != ""
@@ -24,7 +24,7 @@ class TasksController < ApplicationController
       render :new
     else
       if @task.save
-        redirect_to new_task_path, notice: "タスクを作成しました！"
+        redirect_to tasks_path, notice: "タスクを作成しました！"
       else
         render :new
       end

@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :label_category do
-    name { "MyString" }
+    name { "label_test" }
   end
 end

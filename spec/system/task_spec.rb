@@ -39,8 +39,8 @@ RSpec.describe 'タスク管理機能', type: :system do
         sleep(1)
         task_list = all('.task_row')
         @tasks = Task.all.order(task_deadline: :asc)
-        expect(task_list[0].find_by_id("tasks-index_row_title-#{@tasks.first.id}")).to have_content @tasks.first.title
-        expect(task_list[0].find_by_id("tasks-index_row_content-#{@tasks.first.id}")).to have_content @tasks.first.content
+        expect(task_list[0]).to have_content @tasks.first.title
+        expect(task_list[0]).to have_content @tasks.first.content
       end
     end
   end
@@ -49,11 +49,11 @@ RSpec.describe 'タスク管理機能', type: :system do
     it '優先度が高いものが上に表示される' do
       visit tasks_path
       click_link '優先順位 ▼'
-      sleep(1)
+      sleep(2)
       task_list = all('.task_row')
       @tasks = Task.all.order(priority: :asc)
-      expect(task_list[0].find_by_id("tasks-index_row_title-#{@tasks.first.id}")).to have_content @tasks.first.title
-      expect(task_list[0].find_by_id("tasks-index_row_content-#{@tasks.first.id}")).to have_content @tasks.first.content
+      expect(task_list[0]).to have_content @tasks.first.title
+      expect(task_list[0]).to have_content @tasks.first.content
     end
   end
 
