@@ -3,13 +3,14 @@ class TasksController < ApplicationController
   before_action :ensure_current_user, only: %i[ edit update show ]
 
   def index
-    @tasks = Task.all.includes(:user)
-    @tasks = Task.all.order(created_at: :desc).includes(:user)
-    @tasks = Task.all.order(task_deadline: :asc).includes(:user) if params[:sort_expired]
-    @tasks = Task.all.order(priority: :asc).includes(:user) if params[:sort_priority]
+    @tasks = current_user.tasks.includes(:user)
+    @tasks = @tasks.order(created_at: :desc) if params[:sort_expired].nil? && params[:sort_priority].nil?
+    @tasks = @tasks.order(task_deadline: :asc) if params[:sort_expired]
+    @tasks = @tasks.order(priority: :asc) if params[:sort_priority]
     @tasks = @tasks.title_search(params[:title]) if params[:title].present?
     @tasks = @tasks.status_search(params[:status]) if params[:status].present? && params[:status] != ""
     @tasks = @tasks.priority_search(params[:priority]) if params[:priority].present? && params[:priority] != ""
+    @tasks = @tasks.label_category_search(params[:label_category_id]) if params[:label_category_id].present? && params[:label_category_id] != ""
     @tasks = @tasks.page(params[:page]).per(10)
   end
 
@@ -23,7 +24,7 @@ class TasksController < ApplicationController
       render :new
     else
       if @task.save
-        redirect_to new_task_path, notice: "タスクを作成しました！"
+        redirect_to tasks_path, notice: "タスクを作成しました！"
       else
         render :new
       end
@@ -49,14 +50,9 @@ class TasksController < ApplicationController
     redirect_to tasks_path, notice:"タスクを削除しました！"
   end
 
-  def confirm
-    @task = current_user.tasks.build(task_params)
-    render :new if @task.invalid?
-  end
-
   private
   def task_params
-    params.require(:task).permit(:title, :content, :task_deadline, :status, :priority, :user_id)
+    params.require(:task).permit(:title, :content, :task_deadline, :status, :priority, :user_id, { label_category_ids: [] })
   end
 
   def set_task

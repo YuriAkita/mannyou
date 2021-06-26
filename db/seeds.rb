@@ -10,7 +10,7 @@ User.create!(name: "Example User",
              password: "999999",
              admin: true)
 
-1.times do |n|
+10.times do |n|
   name = Faker::Games::Pokemon.name
   email = Faker::Internet.email
   password = "password"
@@ -18,4 +18,20 @@ User.create!(name: "Example User",
                email: email,
                password: password,
                )
+end
+
+10.times do |n|
+  title = Faker::Coffee.blend_name
+  content = Faker::Games::Zelda.game
+  task_deadline = Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :day)
+  Task.create!(title: title,
+               content: content,
+               task_deadline: task_deadline,
+               user_id: rand(1..11)
+               )
+end
+
+10.times do |n|
+  name = Faker::Creature::Dog.name
+  LabelCategory.create!(name: name)
 end

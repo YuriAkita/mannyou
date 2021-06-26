@@ -6,5 +6,8 @@ class Task < ApplicationRecord
   scope :title_search, -> (title) { where("title LIKE ?", "%#{title}%") }
   scope :status_search, -> (status) { where(status: status) }
   scope :priority_search, -> (priority) { where(priority: priority) }
+  scope :label_category_search, -> (id) { joins(:labelings).where("labelings.label_category_id = ?", id) }
   belongs_to :user
+  has_many :labelings, dependent: :destroy
+  has_many :label_categories, through: :labelings
 end
