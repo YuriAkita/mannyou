@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.describe 'ラベル機能', type: :system do
   let!(:user) { FactoryBot.create(:user) }
-  let!(:label_category) { FactoryBot.create(:label_category) }
+  let!(:label_category) { FactoryBot.create(:label_category, name: 'test1') }
 
   before do
     visit new_session_path
@@ -23,7 +23,20 @@ RSpec.describe 'ラベル機能', type: :system do
         check "task[label_category_ids][]"
         click_button 'commit'
         visit tasks_path
-        expect(page).to have_content 'label_test'
+        expect(page).to have_content 'test1'
+      end
+    end
+  end
+
+  describe 'ラベル検索機能' do
+    context 'ラベル検索した場合' do
+      it '該当の投稿に作成したタスクが表示される' do
+        sleep(1)
+        FactoryBot.create(:task, user: user)
+        visit tasks_path
+        select 'test1', from: 'label_category_id'
+        click_button 'tasks-index_search-button'
+        expect(page).to have_content 'test1'
       end
     end
   end

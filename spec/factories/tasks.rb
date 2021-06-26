@@ -5,6 +5,10 @@ FactoryBot.define do
     task_deadline { '002021-04-01' }
     status { '完了' }
     priority { 1 }
+    after(:build) do |task|
+      label_category = create(:label_category)
+      task.labelings << build(:labeling, task: task, label_category: label_category)
+    end
   end
 
   factory :second_task, class: Task do
