@@ -6,7 +6,7 @@ webpacker (~> 5.0)
 | tasks           |
 | --------------- |
 | id              |
-| task_labels_id  |
+| labeling_id     |
 | users_id        |
 | title:string    |
 | content:text    |
@@ -14,10 +14,17 @@ webpacker (~> 5.0)
 | task_deadline:date   |
 | priority:integer |
 
-| task_lebels           |
+| labelings           |
 | --------------------- |
 | id                    |
-| label_category:string |
+| tasks_id |
+| label_categories_id |
+
+| label_categories |
+| --------------------- |
+| id |
+| name:string |
+
 
 | users                  |
 | ---------------------- |
